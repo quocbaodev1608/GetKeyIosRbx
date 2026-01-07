@@ -1,0 +1,18 @@
+body{
+  background:#0f172a;
+  color:#fff;
+  font-family:Arial;
+}
+.card{
+  max-width:420px;
+  margin:80px auto;
+  background:#1e293b;
+  padding:20px;
+  border-radius:14px;
+  text-align:center;
+}
+.key{
+  font-size:22px;
+  color:#22c55e;
+  word-break:break-all;
+}
