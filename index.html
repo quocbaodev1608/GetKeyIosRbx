@@ -3,26 +3,41 @@
 <head>
 <meta charset="utf-8">
 <title>Get Key</title>
-<script>
-const link4m = [
-  "https://link4m.com/Rz1LTg"
-];
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+<div class="card">
+<h2>🔑 KEY CỦA BẠN</h2>
+<div id="info">Đang tạo key...</div>
+</div>
+
+<script>
 function isMobile(){
   return /Android|iPhone|iPad/i.test(navigator.userAgent);
 }
 
-const data = JSON.parse(localStorage.getItem("keyData"));
+let data = JSON.parse(localStorage.getItem("keyData"));
 const now = Date.now();
 
 if (!data || now > data.expire){
-  sessionStorage.setItem("needBypass","1");
-  const link = link4m[Math.floor(Math.random()*link4m.length)];
-  location.href = link;
-}else{
-  location.href = "getkey.html";
+  data = {
+    key: "RBX-" + Math.random().toString(36).substr(2,8).toUpperCase(),
+    created: now,
+    expire: now + 48*60*60*1000,
+    device: isMobile() ? "Mobile" : "PC"
+  };
+  localStorage.setItem("keyData", JSON.stringify(data));
 }
+
+document.getElementById("info").innerHTML = `
+<b>KEY:</b><br>
+<span class="key">${data.key}</span><br><br>
+<b>Ngày tạo:</b> ${new Date(data.created).toLocaleString()}<br>
+<b>Hết hạn:</b> ${new Date(data.expire).toLocaleString()}<br>
+<b>Thiết bị:</b> ${data.device}
+`;
 </script>
-</head>
-<body></body>
+
+</body>
 </html>
