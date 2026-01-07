@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Get Key</title>
+<script>
+const link4m = [
+  "https://link4m.com/AAA",
+  "https://link4m.com/BBB",
+  "https://link4m.com/CCC"
+];
+
+function isMobile(){
+  return /Android|iPhone|iPad/i.test(navigator.userAgent);
+}
+
+const data = JSON.parse(localStorage.getItem("keyData"));
+const now = Date.now();
+
+if (!data || now > data.expire){
+  sessionStorage.setItem("needBypass","1");
+  const link = link4m[Math.floor(Math.random()*link4m.length)];
+  location.href = link;
+}else{
+  location.href = "getkey.html";
+}
+</script>
+</head>
+<body></body>
+</html>
